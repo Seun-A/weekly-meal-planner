@@ -2,12 +2,8 @@
   font-family: 'Cookie', cursive;
 }
 
-.App-header {
+.App {
   background-color: #EFE1DA;
   min-height: 100vh;
-  
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  font-family: 'Open Sans', sans-serif;
 }
