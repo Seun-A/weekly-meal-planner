@@ -1,7 +1,7 @@
 import ChecklistItem from '../checklist-item/checklist-item.component';
 
 const GroceryList = () => (
-  <div className="bg-white mt-6 ms-3 rounded-3xl p-3 w-36">
+  <div className="grocery-list bg-white mt-6 ms-3 rounded-3xl p-3 w-36">
     <div className={`
       cookie-font text-2xl tracking-wider mb-2 text-center
     `}>Grocery List</div>
