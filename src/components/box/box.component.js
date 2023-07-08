@@ -1,6 +1,7 @@
-import './box.style.css'
-
-const Box = ({rounded, extended, b, e, content}) => {
+const Box = ({rounded, extended, b, e, content, meal, day, toggleShowAltForm}) => {
+  const handleClick = () => {
+    toggleShowAltForm(meal, day, content, true);
+  }
 
   return (
     <textarea className={`
@@ -13,12 +14,13 @@ const Box = ({rounded, extended, b, e, content}) => {
 
       ${rounded ? `rounded-${rounded}-3xl` : ""}
 
-      h-${extended ? 28 : 24}
+      h-${extended ? "28" : "24"}
       
       ${b ? 'border-b-2' : null}
 
       ${e ? 'border-e-2' : null}
     `}
+    onPointerDown={handleClick}
     value={content}
     disabled
     />

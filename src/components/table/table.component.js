@@ -1,10 +1,9 @@
-import './table.style.css';
 import Box from '../box/box.component';
 
-const Table = ({ tableContent }) => {
+const Table = ({ tableContent, toggleShowAltForm }) => {
   const table = Object.entries(tableContent).map(([day, meals], i1) => {
     const mealBoxes = Object.entries(meals).map(([meal, {...props}], i2) => (
-      <Box key={i2} {...props} />
+      <Box key={i2} meal={meal} day={day} toggleShowAltForm={toggleShowAltForm} {...props} />
     ));
 
     // Returns a warning, to be fixed in the future

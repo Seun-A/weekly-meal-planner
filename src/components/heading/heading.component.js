@@ -1,5 +1,6 @@
 const Heading = () => (
   <div className={`
+      heading
       cookie-font text-5xl text-gray-900 py-2
       sm:truncate sm:text-6xl sm:tracking-tight
     `}>

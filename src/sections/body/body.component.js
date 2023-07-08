@@ -40,11 +40,27 @@ const Body = () => {
       Dinner: {content:'', rounded:"br", extended:true, b:false, e:false},
     }
   })
+
+  const [showAltForm, toggleAlt] = useState({ showAlt:false, meal:'Lunch', day:'Mon', content:'Avocado Toast' })
+
+
+  const toggleShowAltForm = (meal, day, content, bool) => {
+    toggleAlt({
+      showAlt: bool ? true : false,
+      meal:meal, day:day, content:content
+    });
+  };
+
   
   return (
-    <div className="flex justify-center mt-10">
-      <Table tableContent={tableContent}  />
-      <Sidebar tableContent={tableContent} setTableContent={setTableContent} />
+    <div className="body-section flex justify-center mt-10">
+      <Table tableContent={tableContent} toggleShowAltForm={toggleShowAltForm}  />
+      <Sidebar
+        tableContent={tableContent}
+        setTableContent={setTableContent}
+        showAltForm={showAltForm}
+        toggleShowAltForm={toggleShowAltForm}
+      />
     </div>
   )
 }
