@@ -1,7 +1,9 @@
-const Box = ({rounded, extended, b, e, content, meal, day, toggleShowAltForm}) => {
+const Box = ({rounded, b, e, content, meal, day, toggleShowAltForm}) => {
   const handleClick = () => {
     toggleShowAltForm(meal, day, content, true);
   }
+
+  const spec = rounded;
 
   return (
     <textarea className={`
@@ -12,9 +14,10 @@ const Box = ({rounded, extended, b, e, content, meal, day, toggleShowAltForm}) =
       hover:bg-red-50 cursor-pointer
       active:bg-red-100
 
-      ${rounded ? `rounded-${rounded}-3xl` : ""}
 
-      h-${extended ? "28" : "24"}
+      rounded-${spec}-3xl
+
+      h-24
       
       ${b ? 'border-b-2' : null}
 

@@ -1,4 +1,5 @@
-import DefaultForm, { AltForm } from "../forms/forms.component";
+import DefaultForm from "../form-def/form-def.component";
+import AltForm from "../form-alt/forms-alt.component";
 
 const Sidebar = ({ tableContent, setTableContent, showAltForm, toggleShowAltForm }) => (
   <div
