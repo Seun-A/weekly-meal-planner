@@ -1,12 +1,12 @@
 import Box from '../box/box.component';
 
-const Table = ({ tableContent, toggleShowAltForm }) => {
+const Table = ({ tableContent, ...props }) => {
   const table = Object.entries(tableContent).map(([day, meals], i1) => {
-    const mealBoxes = Object.entries(meals).map(([meal, {...props}], i2) => (
-      <Box key={i2} meal={meal} day={day} toggleShowAltForm={toggleShowAltForm} {...props} />
+    const mealBoxes = Object.entries(meals).map(([meal, {...prop}], i2) => (
+      <Box key={i2} meal={meal} day={day} {...props} {...prop} />
     ));
 
-    // Returns a warning, to be fixed in the future
+    // Returns a warning, to be fixed in the future ...maybe
     return (
       <>
         <div key={i1} className="-rotate-90 translate-y-9 -translate-x-9 text-center h-6 w-24 text-sm">{day}</div>

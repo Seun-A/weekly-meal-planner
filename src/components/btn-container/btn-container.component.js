@@ -1,43 +1,26 @@
 const BtnContainer = ({ ...props }) => (
-  <div className={`
-    absolute
-    block w-48 top-60 flex justify-between
-  `}>
+  <div className={`btn-container absolute block w-48 top-60 flex justify-between`}>
     <Btn btnStyle='submit' {...props} />
     <Btn btnStyle='cancel' {...props} />
   </div>
 )
 
-
-
-const Btn = ({ btnStyle, setState, form, showAltForm, toggleShowAltForm, setAltState, altState }) => {
-  const submit = event => {
-    console.log('submit')
-  }
-
+const Btn = ({ form, setState, btnStyle, altState, showAltForm, toggleShowAltForm }) => {
   const cancel = event => {
     event.preventDefault()
 
     if (form === "default") {
-      setState({ day:'', meal:'', boxContent:'' })
+      setState({ day:'', meal:'', boxContent:'', alert:false })
     } else {
       let { meal, day } = showAltForm 
-      toggleShowAltForm(meal, day, '', true)
-    }
-
-    if (setAltState) {
-      setAltState({init: altState.content, final: ''})
-      console.log(altState)
+      toggleShowAltForm(meal, day, altState.init, false)
     }
   }
 
   const [color, label, action] = btnStyle === "submit" ? 
-    [ 'bg-red-50', 'Submit', submit ] : btnStyle === "cancel" ?
-
+    [ 'bg-red-50', 'Submit', null ] : btnStyle === "cancel" ?
     [ 'bg-red-300', 'Cancel', cancel ] :
     [ 'bg-red-50', '?', null ]
-
-
 
   return (
     <button className={`
@@ -56,8 +39,5 @@ const Btn = ({ btnStyle, setState, form, showAltForm, toggleShowAltForm, setAltS
     </button>
   )
 }
-
-
-
 
 export default BtnContainer;

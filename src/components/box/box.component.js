@@ -1,30 +1,28 @@
-const Box = ({rounded, b, e, content, meal, day, toggleShowAltForm}) => {
+const Box = ({rounded, b, e, meal, day, content, toggleShowAltForm, showAltForm}) => {
   const handleClick = () => {
     toggleShowAltForm(meal, day, content, true);
   }
 
-  const spec = rounded;
+  const contentToShow = showAltForm.meal === meal && showAltForm.day === day ? showAltForm.content : content;
 
   return (
     <textarea className={`
       table-box resize-none
-
       py-2 px-3 text-xs bg-white border-dotted border-gray-400
-
       hover:bg-red-50 cursor-pointer
       active:bg-red-100
-
-
-      rounded-${spec}-3xl
-
       h-24
-      
       ${b ? 'border-b-2' : null}
-
       ${e ? 'border-e-2' : null}
+      ${
+        rounded === 'tr' ? 'rounded-tr-3xl':
+        rounded === 'tl' ? 'rounded-tl-3xl':
+        rounded === 'br' ? 'rounded-br-3xl':
+        rounded === 'bl' ? 'rounded-bl-3xl': null
+      }
     `}
     onPointerDown={handleClick}
-    value={content}
+    value={contentToShow}
     disabled
     />
   )
