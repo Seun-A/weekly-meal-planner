@@ -1,12 +1,10 @@
-import MonthPicker from "../../components/month-picker/month-picker.component";
-import WeekPicker from "../../components/week-picker/week-picker.component";
-
-import './date.style.css'
+import SelectMonth from "../../components/select-month/select-month.component";
+import SelectWeek from "../../components/select-week/select-week.component";
 
 const DateSection = () => (
   <div className="date-section flex">
-    <MonthPicker />
-    <WeekPicker />
+    <SelectMonth />
+    <SelectWeek />
   </div>
 )
 

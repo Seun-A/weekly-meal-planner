@@ -1,10 +1,9 @@
 import DefaultForm from "../form-def/form-def.component";
 import AltForm from "../form-alt/forms-alt.component";
 
-const Sidebar = ({ tableContent, setTableContent, showAltForm, toggleShowAltForm }) => (
+const Sidebar = ({ showAltForm, ...props }) => (
   <div
-    className={`
-      sidebar
+    className={`sidebar
       relative bg-white
       mt-6 ms-3 rounded-3xl
       py-8 px-6 w-60
@@ -12,17 +11,9 @@ const Sidebar = ({ tableContent, setTableContent, showAltForm, toggleShowAltForm
   >
     {
       showAltForm.showAlt ? 
-        <AltForm
-          showAltForm={showAltForm}
-          toggleShowAltForm={toggleShowAltForm}
-          tableContent={tableContent}
-          setTableContent={setTableContent}
-        />
+        <AltForm showAltForm={showAltForm} {...props} />
       :
-        <DefaultForm
-          tableContent={tableContent}
-          setTableContent={setTableContent}
-        />
+        <DefaultForm {...props} />
     }
   </div>
 )

@@ -1,27 +1,35 @@
 import { useState } from "react";
+import TextArea from "../text-area/text-area.component";
+import { SelectFood } from "../select/select.component";
 import BtnContainer from "../btn-container/btn-container.component";
 
 const DefaultForm = ({ tableContent, setTableContent }) => {
-  const [state, setState] = useState({ day:'Mon', meal:'Breakfast', boxContent:'' })
+  const [state, setState] = useState({ day:'', meal:'', boxContent:'', alert:false })
+
+  const days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
+  const meals = ['Breakfast', 'Lunch', 'Dinner']
 
   const handleSubmit = event => {
     event.preventDefault();
-    
     const { day, meal, boxContent } = state
-    
-    const updatedTableContent = {
-      ...tableContent,
-      [day]: {
-        ...tableContent[day],
-        [meal]: {
-          ...tableContent[day][meal],
-          content: boxContent,
-        },
-      }
-    };
 
-    setTableContent(updatedTableContent);
-    setState(prev => {return {...prev, boxContent:'' }})
+    if ((day !== '') && (meal !== '') && (boxContent !== '')) {
+      const updatedTableContent = {
+        ...tableContent,
+        [day]: {
+          ...tableContent[day],
+          [meal]: {
+            ...tableContent[day][meal],
+            content: boxContent,
+          },
+        }
+      };
+      
+      setTableContent(updatedTableContent);
+      setState({day:'', meal:'', boxContent:''})
+    } else {
+      setState(prev => {return {...prev, alert:true}})
+    }
   }
 
   const handleChange = event => {
@@ -29,61 +37,37 @@ const DefaultForm = ({ tableContent, setTableContent }) => {
     setState( prev => {return {...prev, [name]:value}} )
   }
 
-  const days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
-  const meals = ['Breakfast', 'Lunch', 'Dinner']
 
 
   return (
     <div className="form-container">
       <div className='font-semibold text-sm mb-2'>Add a meal</div>
       <form onSubmit={handleSubmit}>
-        <textarea
-          name="boxContent"
-          type = "text"
-          className={`
-            h-28 w-full border border-black rounded-lg resize-none text-xs py-2 px-3
-            focus:outline-none
-            hover:border-red-400/25 focus:border-red-400/25 active:border-red-400/25
-            transition-colors duration-300
-          `}
-          value={state.boxContent}
-          placeholder="e.g. Sunny side up"
-          onChange={handleChange}
-        />
+        <TextArea value={state.boxContent} onChange={handleChange} />
 
         <section className="mt-6 flex justify-between">
-          <select name='day' onChange={handleChange} id="select-day"
-            className="text-xs cursor-pointer focus:outline-none
-            transition duration-300 hover:border-b-red-400
-            -webkit-appearance: none w-16
+          <SelectFood
+            value={state.day}
+            name='day'
+            change={handleChange}
+            optArr={days}
+          />
 
-            bg-transparent border-b border-black text-sm py-1 -translate-y-1">
-            <option
-              defaultValue
-              value=""
-              key={0}
-              disabled
-            >Day</option>
-            {days.map((day, i) => <option value={day} key={i+1}>{day}</option>)}
-          </select>
-
-          <select name='meal' onChange={handleChange} id="select-meal"
-            className="text-xs cursor-pointer focus:outline-none
-            transition duration-300 hover:border-b-red-400
-            -webkit-appearance: none w-20
-
-            bg-transparent border-b border-black text-sm py-1 -translate-y-1">
-            <option
-              defaultValue
-              value=""
-              key={0}
-              disabled
-            >Meal</option>
-            {meals.map((meal, i) => <option value={meal} key={i+1}>{meal}</option>)}
-          </select>
+          <SelectFood
+            value={state.meal}
+            name='meal'
+            change={handleChange}
+            optArr={meals}
+          />
         </section>
 
-        <BtnContainer state={state} setState={setState} form="default" />
+        {state.alert ? (
+          <div className='mt-16 font-semibold text-xs text-center text-red-600'>
+            *Select Day, Meal, and Content*
+          </div>) : null
+        }
+
+        <BtnContainer form="default" setState={setState} />
       </form>
     </div>
   )
