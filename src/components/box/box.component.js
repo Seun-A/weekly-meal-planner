@@ -5,10 +5,17 @@ const Box = ({rounded, b, e, meal, day, content, toggleShowAltForm, showAltForm}
 
   const contentToShow = showAltForm.meal === meal && showAltForm.day === day ? showAltForm.content : content;
 
+  const bg = showAltForm.showAlt ?
+    showAltForm.meal === meal && showAltForm.day === day ?
+      'bg-red-50' :
+      'bg-white' :
+    'bg-white'
+
+    
   return (
     <textarea className={`
       table-box resize-none
-      py-2 px-3 text-xs bg-white border-dotted border-gray-400
+      py-2 px-3 text-xs ${bg} border-dotted border-gray-400
       hover:bg-red-50 cursor-pointer
       active:bg-red-100
       h-24
