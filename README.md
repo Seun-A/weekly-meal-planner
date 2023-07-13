@@ -17,8 +17,8 @@ The **Cancel Button** is implemented to reset the input process
 Displayed below is the [Canva](https://www.canva.com/en_gb/) inspiration on the left, and final UI on the right:
 
 <section style="text-align: center">
-  <img src="src/assets/canva-template.jpg" alt="drawing" width="40%" style="aspect-ratio: 3/4; max-width:350px"/>
-  <img src="src/assets/table.png" alt="drawing" width="40%" style="aspect-ratio: 3/4; max-width:350px"/>
+  <img src="src/assets/canva-template.jpg" alt="drawing" width="40%" style="max-width:350px"/>
+  <img src="src/assets/table.png" alt="drawing" width="40%" style="max-width:350px"/>
 </section>
 
 #
