@@ -1,7 +1,7 @@
 import DefaultForm from "../form-def/form-def.component";
 import AltForm from "../form-alt/forms-alt.component";
 
-const Sidebar = ({ showAltForm, ...props }) => (
+const Sidebar = ({ altShow, ...props }) => (
   <div
     className={`sidebar
       relative bg-white
@@ -10,8 +10,8 @@ const Sidebar = ({ showAltForm, ...props }) => (
     `}
   >
     {
-      showAltForm.showAlt ? 
-        <AltForm showAltForm={showAltForm} {...props} />
+      altShow ? 
+        <AltForm altShow={altShow} {...props} />
       :
         <DefaultForm {...props} />
     }

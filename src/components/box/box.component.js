@@ -1,12 +1,13 @@
-const Box = ({rounded, b, e, meal, day, content, toggleShowAltForm, showAltForm}) => {
+const Box = ({rounded, b, e, meal, day, content, setAltForm, setAltShow, altForm}) => {
   const handleClick = () => {
-    toggleShowAltForm(meal, day, content, true);
+    setAltForm({ meal:meal, day:day, content:content })
+    setAltShow(true)
   }
 
-  const contentToShow = showAltForm.meal === meal && showAltForm.day === day ? showAltForm.content : content;
+  const contentToShow = altForm.meal === meal && altForm.day === day ? altForm.content : content;
 
-  const bg = showAltForm.showAlt ?
-    showAltForm.meal === meal && showAltForm.day === day ?
+  const bg = altForm.showAlt ?
+    altForm.meal === meal && altForm.day === day ?
       'bg-red-50' :
       'bg-white' :
     'bg-white'
