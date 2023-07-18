@@ -5,12 +5,12 @@ const BtnContainer = ({ ...props }) => (
   </div>
 )
 
-const Btn = ({ form, setState, btnStyle, altState, showAltForm, toggleShowAltForm }) => {
+const Btn = ({ form, setState, setAlert, btnStyle, altState, showAltForm, toggleShowAltForm }) => {
   const cancel = event => {
     event.preventDefault()
-
     if (form === "default") {
-      setState({ day:'', meal:'', boxContent:'', alert:false })
+      setState({ day:'', meal:'', boxContent:'' });
+      setAlert(false)
     } else {
       let { meal, day } = showAltForm 
       toggleShowAltForm(meal, day, altState.init, false)
