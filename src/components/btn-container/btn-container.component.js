@@ -1,6 +1,6 @@
 import Btn from "../btn/btn.component"
 
-const BtnContainer = ({ form, setState, btnStyle, altState, showAltForm, toggleShowAltForm }) => {
+const BtnContainer = ({ form, setState, altState, showAltForm, toggleShowAltForm }) => {
   const cancel = event => {
     event.preventDefault()
   
@@ -15,7 +15,7 @@ const BtnContainer = ({ form, setState, btnStyle, altState, showAltForm, toggleS
 
   return (
     <div className={`btn-container absolute block w-48 top-60 flex justify-between`}>
-      <Btn btnStyle='submit' color='bg-red-50' label='Submit' onClick={null} />
+      <Btn btnStyle='submit' color='bg-red-50' label='Submit' />
       <Btn btnStyle='cancel' color='bg-red-300' label='Cancel' onClick={cancel} />
     </div>    
   )

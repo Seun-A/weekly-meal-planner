@@ -1,4 +1,4 @@
-const Btn = ({ color, label, onClick, btnStyle }) => (
+const Btn = ({ color, label, onClick = null, btnStyle }) => (
   <button className = {`
     ${color} py-2 shadow-md rounded-md text-sm font-semibold w-16
 
