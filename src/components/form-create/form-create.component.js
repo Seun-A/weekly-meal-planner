@@ -1,6 +1,6 @@
 import { useState } from "react";
 import TextArea from "../text-area/text-area.component";
-import { SelectFood } from "../select/select.component";
+import Select from "../select/select.component";
 import BtnContainer from "../btn-container/btn-container.component";
 
 const CreateForm = ({ tableContent, setTableContent }) => {
@@ -40,7 +40,6 @@ const CreateForm = ({ tableContent, setTableContent }) => {
   }
 
 
-
   return (
     <div className="form-container">
       <div className='font-semibold text-sm mb-2'>Add a meal</div>
@@ -48,17 +47,17 @@ const CreateForm = ({ tableContent, setTableContent }) => {
         <TextArea value={state.boxContent} onChange={handleChange} />
 
         <section className="mt-6 flex justify-between">
-          <SelectFood
+          <Select
             value={state.day}
             name='day'
-            change={handleChange}
+            onChange={handleChange}
             optArr={days}
           />
 
-          <SelectFood
+          <Select
             value={state.meal}
             name='meal'
-            change={handleChange}
+            onChange={handleChange}
             optArr={meals}
           />
         </section>
