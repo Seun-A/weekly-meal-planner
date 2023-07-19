@@ -5,6 +5,7 @@ import BtnContainer from "../btn-container/btn-container.component";
 
 const DefaultForm = ({ tableContent, setTableContent }) => {
   const [state, setState] = useState({ day:'', meal:'', boxContent:'', alert:false })
+  const [alert, setAlert] = useState(false)
 
   const days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
   const meals = ['Breakfast', 'Lunch', 'Dinner']
@@ -27,8 +28,9 @@ const DefaultForm = ({ tableContent, setTableContent }) => {
       
       setTableContent(updatedTableContent);
       setState({day:'', meal:'', boxContent:''})
+      setAlert(false)
     } else {
-      setState(prev => {return {...prev, alert:true}})
+      setAlert(true)
     }
   }
 
@@ -61,13 +63,13 @@ const DefaultForm = ({ tableContent, setTableContent }) => {
           />
         </section>
 
-        {state.alert ? (
+        {alert ? (
           <div className='mt-16 font-semibold text-xs text-center text-red-600'>
             *Select Day, Meal, and Content*
           </div>) : null
         }
 
-        <BtnContainer form="default" setState={setState} />
+        <BtnContainer form="default" setState={setState} setAlert={setAlert} />
       </form>
     </div>
   )
