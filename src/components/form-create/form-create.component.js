@@ -3,7 +3,7 @@ import TextArea from "../text-area/text-area.component";
 import { SelectFood } from "../select/select.component";
 import BtnContainer from "../btn-container/btn-container.component";
 
-const DefaultForm = ({ tableContent, setTableContent }) => {
+const CreateForm = ({ tableContent, setTableContent }) => {
   const [state, setState] = useState({ day:'', meal:'', boxContent:'', alert:false })
   const [alert, setAlert] = useState(false)
 
@@ -14,7 +14,7 @@ const DefaultForm = ({ tableContent, setTableContent }) => {
     event.preventDefault();
     const { day, meal, boxContent } = state
 
-    if ((day !== '') && (meal !== '') && (boxContent !== '')) {
+    if ((day) && (meal) && (boxContent)) {
       const updatedTableContent = {
         ...tableContent,
         [day]: {
@@ -75,4 +75,4 @@ const DefaultForm = ({ tableContent, setTableContent }) => {
   )
 }
 
-export default DefaultForm;
+export default CreateForm;

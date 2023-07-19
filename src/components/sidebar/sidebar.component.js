@@ -1,5 +1,5 @@
-import DefaultForm from "../form-def/form-def.component";
-import AltForm from "../form-alt/forms-alt.component";
+import EditForm from "../form-edit/form-edit.component";
+import CreateForm from "../form-create/form-create.component";
 
 const Sidebar = ({ showAltForm, ...props }) => (
   <div
@@ -11,9 +11,9 @@ const Sidebar = ({ showAltForm, ...props }) => (
   >
     {
       showAltForm.showAlt ? 
-        <AltForm showAltForm={showAltForm} {...props} />
+        <EditForm showAltForm={showAltForm} {...props} />
       :
-        <DefaultForm {...props} />
+        <CreateForm {...props} />
     }
   </div>
 )

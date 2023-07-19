@@ -2,7 +2,7 @@ import { useState } from "react";
 import BtnContainer from "../btn-container/btn-container.component";
 import TextArea from "../text-area/text-area.component";
 
-const AltForm = ({
+const EditForm = ({
     tableContent, setTableContent, showAltForm, toggleShowAltForm
   }) => {
 
@@ -53,4 +53,4 @@ const AltForm = ({
   )
 }
 
-export default AltForm
+export default EditForm
