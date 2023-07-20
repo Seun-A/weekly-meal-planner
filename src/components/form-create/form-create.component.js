@@ -3,7 +3,7 @@ import TextArea from "../text-area/text-area.component";
 import { SelectFood } from "../select/select.component";
 import BtnContainer from "../btn-container/btn-container.component";
 
-const DefaultForm = ({ tableContent, setTableContent }) => {
+const CreateForm = ({ tableContent, setTableContent }) => {
   const [state, setState] = useState({ day:'', meal:'', boxContent:'', alert:false })
 
   const days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
@@ -73,4 +73,4 @@ const DefaultForm = ({ tableContent, setTableContent }) => {
   )
 }
 
-export default DefaultForm;
+export default CreateForm;

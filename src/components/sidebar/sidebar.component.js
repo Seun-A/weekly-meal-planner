@@ -1,7 +1,7 @@
-import DefaultForm from "../form-def/form-def.component";
-import AltForm from "../form-alt/forms-alt.component";
+import DefaultForm from "../form-create/form-create.component";
+import AltForm from "../form-edit/forms-edit.component";
 
-const Sidebar = ({ altShow, ...props }) => (
+const Sidebar = ({ editFormVisible, ...props }) => (
   <div
     className={`sidebar
       relative bg-white
@@ -10,8 +10,8 @@ const Sidebar = ({ altShow, ...props }) => (
     `}
   >
     {
-      altShow ? 
-        <AltForm altShow={altShow} {...props} />
+      editFormVisible ? 
+        <AltForm {...props} />
       :
         <DefaultForm {...props} />
     }

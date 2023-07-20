@@ -41,25 +41,25 @@ const Body = () => {
     }
   })
 
-  const [altForm, setAltForm] = useState({ showAlt:false, meal:'', day:'', content:'' })
-  const [altShow, setAltShow] = useState(false)
+  const [editForm, setEditForm] = useState({ meal:'', day:'', content:'' })
+  const [editFormVisible, setEditFormVisible] = useState(false)
+
   
   return (
     <div className="body-section flex justify-center mt-10">
       <Table
         tableContent={tableContent}
-        altForm={altForm}
-        setAltForm={setAltForm}
-        altShow={altShow}
-        setAltShow={setAltShow}
+        editForm={editForm}
+        setEditForm={setEditForm}
+        setEditFormVisible={setEditFormVisible}
       />
       <Sidebar
         tableContent={tableContent}
         setTableContent={setTableContent}
-        altForm={altForm}
-        setAltForm={setAltForm}
-        altShow={altShow}
-        setAltShow={setAltShow}
+        editForm={editForm}
+        setEditForm={setEditForm}
+        editFormVisible={editFormVisible}
+        setEditFormVisible={setEditFormVisible}
       />
     </div>
   )
