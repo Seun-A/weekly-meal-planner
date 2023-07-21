@@ -3,10 +3,10 @@ import BtnContainer from "../btn-container/btn-container.component";
 import TextArea from "../text-area/text-area.component";
 
 const EditForm = ({
-    tableContent, setTableContent, showAltForm, toggleShowAltForm
+    tableContent, setTableContent, setEditFormVisible, editForm, setEditForm
   }) => {
 
-  let { meal, day, content } = showAltForm
+  let { meal, day, content } = editForm
 
   let [altState, setAltState] = useState({init: content})
 
@@ -14,8 +14,9 @@ const EditForm = ({
     event.preventDefault();
 
     setAltState({init:content})
-    toggleShowAltForm('', '', '', false)
-
+    setEditForm({ meal:'', day:'', content:'' })
+    setEditFormVisible(false)
+    
     const updatedTableContent = {
       ...tableContent,
       [day]: {
@@ -31,22 +32,24 @@ const EditForm = ({
   
   const handleChange = event => {
     const { value } = event.target
-    toggleShowAltForm(meal, day, value, true)
+    setEditForm({ meal:meal, day:day, content:value })
+    setEditFormVisible(true)
   }
 
   return (
     <div className="form-container">
       <div className={`
         font-semibold text-sm mb-2 
-      `}>Edit {showAltForm.meal} for {showAltForm.day}</div>
+      `}>Edit {editForm.meal} for {editForm.day}</div>
       <form onSubmit={handleSubmit}>
-        <TextArea value={showAltForm.content} onChange={handleChange} />
+        <TextArea value={editForm.content} onChange={handleChange} />
 
         <BtnContainer 
           altState={altState} 
           setAltState={setAltState} 
-          showAltForm={showAltForm} 
-          toggleShowAltForm={toggleShowAltForm}
+          editForm={editForm} 
+          setEditFormVisible={setEditFormVisible}
+          setEditForm={setEditForm}
         />
       </form>
     </div>

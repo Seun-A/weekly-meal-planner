@@ -1,7 +1,7 @@
 import EditForm from "../form-edit/form-edit.component";
 import CreateForm from "../form-create/form-create.component";
 
-const Sidebar = ({ showAltForm, ...props }) => (
+const Sidebar = ({ editFormVisible, ...props }) => (
   <div
     className={`sidebar
       relative bg-white
@@ -10,8 +10,8 @@ const Sidebar = ({ showAltForm, ...props }) => (
     `}
   >
     {
-      showAltForm.showAlt ? 
-        <EditForm showAltForm={showAltForm} {...props} />
+      editFormVisible ? 
+        <EditForm {...props} />
       :
         <CreateForm {...props} />
     }

@@ -1,6 +1,6 @@
 import Btn from "../btn/btn.component"
 
-const BtnContainer = ({ form, setState, setAlert, altState, showAltForm, toggleShowAltForm }) => {
+const BtnContainer = ({ form, setState, setAlert, altState, editForm, setEditForm, setEditFormVisible }) => {
   const cancel = event => {
     event.preventDefault()
   
@@ -8,8 +8,9 @@ const BtnContainer = ({ form, setState, setAlert, altState, showAltForm, toggleS
       setState({ day:'', meal:'', boxContent:'' });
       setAlert(false)
     } else {
-      let { meal, day } = showAltForm 
-      toggleShowAltForm(meal, day, altState.init, false)
+      let { meal, day } = editForm 
+      setEditForm({ meal:meal, day:day, content:altState.init })
+      setEditFormVisible(false)
     }
   }
 
