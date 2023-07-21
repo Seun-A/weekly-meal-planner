@@ -1,10 +1,10 @@
-const Box = ({rounded, b, e, meal, day, content, setEditForm, setEditFormVisible, editForm}) => {
+const Box = ({ meal, day, index, setEditForm, setEditFormVisible, editForm, table}) => {
   const handleClick = () => {
-    setEditForm({ meal:meal, day:day, content:content })
+    setEditForm({ meal:meal, day:day, content:table[day][meal] })
     setEditFormVisible(true)
   }
 
-  const contentToShow = editForm.meal === meal && editForm.day === day ? editForm.content : content;
+  const contentToShow = editForm.meal === meal && editForm.day === day ? editForm.content : table[day][meal];
 
   const bg = editForm.showAlt ?
     editForm.meal === meal && editForm.day === day ?
@@ -20,13 +20,13 @@ const Box = ({rounded, b, e, meal, day, content, setEditForm, setEditFormVisible
       hover:bg-red-50 cursor-pointer
       active:bg-red-100
       h-24
-      ${b ? 'border-b-2' : null}
-      ${e ? 'border-e-2' : null}
+      ${day !== 'Sun' ? 'border-b-2' : null}
+      ${index !==2 ? 'border-e-2' : null}
       ${
-        rounded === 'tr' ? 'rounded-tr-3xl':
-        rounded === 'tl' ? 'rounded-tl-3xl':
-        rounded === 'br' ? 'rounded-br-3xl':
-        rounded === 'bl' ? 'rounded-bl-3xl': null
+        day === 'Mon' && index === 0 ? 'rounded-tl-3xl':
+        day === 'Mon' && index === 2 ? 'rounded-tr-3xl':
+        day === 'Sun' && index === 0 ? 'rounded-bl-3xl':
+        day === 'Sun' && index === 2 ? 'rounded-br-3xl': null
       }
     `}
     onPointerDown={handleClick}
