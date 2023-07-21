@@ -3,8 +3,13 @@ import TextArea from "../text-area/text-area.component";
 import Select from "../select/select.component";
 import BtnContainer from "../btn-container/btn-container.component";
 
+<<<<<<< HEAD:src/components/form-create/form-create.component.js
 const CreateForm = ({ tableContent, setTableContent }) => {
   const [state, setState] = useState({ day:'', meal:'', boxContent:'', alert:false })
+=======
+const DefaultForm = ({ tableContent, setTableContent }) => {
+  const [state, setState] = useState({ day:'', meal:'', boxContent:'' })
+>>>>>>> fix-def-state:src/components/form-def/form-def.component.js
   const [alert, setAlert] = useState(false)
 
   const days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
