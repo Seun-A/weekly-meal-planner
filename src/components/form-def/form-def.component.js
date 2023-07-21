@@ -4,7 +4,7 @@ import { SelectFood } from "../select/select.component";
 import BtnContainer from "../btn-container/btn-container.component";
 
 const DefaultForm = ({ tableContent, setTableContent }) => {
-  const [state, setState] = useState({ day:'', meal:'', boxContent:'', alert:false })
+  const [state, setState] = useState({ day:'', meal:'', boxContent:'' })
   const [alert, setAlert] = useState(false)
 
   const days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
