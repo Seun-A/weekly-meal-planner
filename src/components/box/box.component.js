@@ -2,6 +2,7 @@ const Box = ({rounded, b, e, meal, day, content, setEditForm, setEditFormVisible
   const handleClick = () => {
     setEditForm({ meal:meal, day:day, content:content })
     setEditFormVisible(true)
+    document.getElementById('text-area').focus()
   }
 
   const contentToShow = editForm.meal === meal && editForm.day === day ? editForm.content : content;

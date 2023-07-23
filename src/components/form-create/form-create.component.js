@@ -11,7 +11,7 @@ const CreateForm = ({ tableContent, setTableContent }) => {
   const meals = ['Breakfast', 'Lunch', 'Dinner']
 
   const handleSubmit = event => {
-    event.preventDefault();
+    if (event) { event.preventDefault(); }
     const { day, meal, boxContent } = state
 
     if ((day) && (meal) && (boxContent)) {
@@ -33,6 +33,16 @@ const CreateForm = ({ tableContent, setTableContent }) => {
       setAlert(true)
     }
   }
+  const handleKeyDown = event => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleSubmit.call()
+    }
+    if (event.key === 'Escape') {
+      setState({ day:'', meal:'', boxContent:'' });
+      setAlert(false)
+    }
+  }
 
   const handleChange = event => {
     const { value, name } = event.target
@@ -43,7 +53,7 @@ const CreateForm = ({ tableContent, setTableContent }) => {
   return (
     <div className="form-container">
       <div className='font-semibold text-sm mb-2'>Add a meal</div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
         <TextArea value={state.boxContent} onChange={handleChange} />
 
         <section className="mt-6 flex justify-between">
