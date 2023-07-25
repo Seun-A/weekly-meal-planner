@@ -3,7 +3,7 @@ import TextArea from "../text-area/text-area.component";
 import Select from "../select/select.component";
 import BtnContainer from "../btn-container/btn-container.component";
 
-const CreateForm = ({ tableContent, setTableContent }) => {
+const CreateForm = ({ submit }) => {
   const [state, setState] = useState({ day:'', meal:'', boxContent:'' })
   const [alert, setAlert] = useState(false)
 
@@ -15,18 +15,8 @@ const CreateForm = ({ tableContent, setTableContent }) => {
     const { day, meal, boxContent } = state
 
     if ((day) && (meal) && (boxContent)) {
-      const updatedTableContent = {
-        ...tableContent,
-        [day]: {
-          ...tableContent[day],
-          [meal]: {
-            ...tableContent[day][meal],
-            content: boxContent,
-          },
-        }
-      };
+      submit(day, meal, boxContent);
       
-      setTableContent(updatedTableContent);
       setState({day:'', meal:'', boxContent:''})
       setAlert(false)
     } else {

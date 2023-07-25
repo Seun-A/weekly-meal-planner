@@ -3,31 +3,22 @@ import BtnContainer from "../btn-container/btn-container.component";
 import TextArea from "../text-area/text-area.component";
 
 const EditForm = ({
-    tableContent, setTableContent, setEditFormVisible, editForm, setEditForm
+    setEditFormVisible, editForm, setEditForm, submit
   }) => {
 
   let { meal, day, content } = editForm
 
-  let [altState, setAltState] = useState({init: content})
+  let [editState, setEditState] = useState({init: content})
 
   const handleSubmit = event => {
     if (event) { event.preventDefault(); }
 
-    setAltState({init:content})
+    setEditState({init:content})
+    submit(day, meal, content)
+
     setEditForm({ meal:'', day:'', content:'' })
     setEditFormVisible(false)
     
-    const updatedTableContent = {
-      ...tableContent,
-      [day]: {
-        ...tableContent[day],
-        [meal]: {
-          ...tableContent[day][meal],
-          content: content,
-        },
-      },
-    };
-    setTableContent(updatedTableContent)
   }
 
   const handleKeyDown = event => {
@@ -36,7 +27,7 @@ const EditForm = ({
       handleSubmit.call()
     }
     if (event.key === 'Escape') {
-      setEditForm({ meal:meal, day:day, content:altState.init })
+      setEditForm({ meal:meal, day:day, content:editState.init })
       setEditFormVisible(false)
     }
   }
@@ -61,8 +52,7 @@ const EditForm = ({
         <TextArea value={editForm.content} onChange={handleChange} />
 
         <BtnContainer 
-          altState={altState} 
-          setAltState={setAltState} 
+          editState={editState} 
           editForm={editForm} 
           setEditFormVisible={setEditFormVisible}
           setEditForm={setEditForm}
