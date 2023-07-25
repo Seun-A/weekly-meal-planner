@@ -2,6 +2,8 @@ import { useState } from "react";
 import TextArea from "../text-area/text-area.component";
 import Select from "../select/select.component";
 import BtnContainer from "../btn-container/btn-container.component";
+import { useDispatch } from 'react-redux'
+import { mealCreated } from "../../redux/form-create/form-create.slice";
 
 const CreateForm = ({ submit }) => {
   const [state, setState] = useState({ day:'', meal:'', boxContent:'' })
@@ -9,6 +11,8 @@ const CreateForm = ({ submit }) => {
 
   const days = ['Mon', 'Tue', 'Wed', 'Thur', 'Fri', 'Sat', 'Sun']
   const meals = ['Breakfast', 'Lunch', 'Dinner']
+  
+  const dispatch = useDispatch()
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -16,6 +20,13 @@ const CreateForm = ({ submit }) => {
 
     if ((day) && (meal) && (boxContent)) {
       submit(day, meal, boxContent);
+
+      dispatch(
+        mealCreated({
+          day: day,
+          [meal]: boxContent
+        })
+      )
       
       setState({day:'', meal:'', boxContent:''})
       setAlert(false)

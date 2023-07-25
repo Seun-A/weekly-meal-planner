@@ -1,3 +1,6 @@
+import React from 'react'
+import { useSelector } from 'react-redux'
+
 const Box = ({ meal, day, index, setEditForm, setEditFormVisible, editForm, table}) => {
   const handleClick = () => {
     setEditForm({ meal:meal, day:day, content:table[day][meal] })
