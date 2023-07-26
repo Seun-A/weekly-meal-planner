@@ -1,7 +1,6 @@
 import React from 'react'
-import { useSelector } from 'react-redux'
 
-const Box = ({ meal, day, index, setEditForm, setEditFormVisible, editForm, table}) => {
+const Box = ({ meal, day, setEditForm, setEditFormVisible, editForm, table}) => {
   const handleClick = () => {
     setEditForm({ meal:meal, day:day, content:table[day][meal] })
     setEditFormVisible(true)
@@ -23,14 +22,16 @@ const Box = ({ meal, day, index, setEditForm, setEditFormVisible, editForm, tabl
       hover:bg-red-50 cursor-pointer
       active:bg-red-100
       h-24
-      ${day !== 'Sun' ? 'border-b-2' : null}
-      ${index !==2 ? 'border-e-2' : null}
-      ${
-        day === 'Mon' && index === 0 ? 'rounded-tl-3xl':
-        day === 'Mon' && index === 2 ? 'rounded-tr-3xl':
-        day === 'Sun' && index === 0 ? 'rounded-bl-3xl':
-        day === 'Sun' && index === 2 ? 'rounded-br-3xl': null
-      }
+      
+      border-b-2
+      group-[&:nth-child(8)]:border-b-0
+      border-e-2
+      [&:nth-child(4)]:border-e-0
+
+      group-[&:nth-child(2)]:[&:nth-child(2)]:rounded-tl-3xl
+      group-[&:nth-child(2)]:[&:nth-child(4)]:rounded-tr-3xl
+      group-[&:nth-child(8)]:[&:nth-child(2)]:rounded-bl-3xl
+      group-[&:nth-child(8)]:[&:nth-child(4)]:rounded-br-3xl
     `}
     onPointerDown={handleClick}
     value={contentToShow}
