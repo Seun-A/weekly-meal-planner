@@ -10,19 +10,17 @@ const initialState = {
   Sun: { Breakfast: '', Lunch: '', Dinner: '' }
 }
 
-const formCreateSlice = createSlice({
-  name: 'form-create',
+const tableSlice = createSlice({
+  name: 'table',
   initialState,
   reducers: {
     mealCreated(state, action) {
-      return {
-        ...state,
-        [action.payload.day]: action.payload
-      }
+      const { day, meal, content } = action.payload;
+      state[day][meal] = content;
     }
   }
 })
 
-export const { mealCreated } = formCreateSlice.actions
+export const { mealCreated } = tableSlice.actions
 
-export default formCreateSlice.reducer
+export default tableSlice.reducer

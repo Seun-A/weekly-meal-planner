@@ -1,46 +1,53 @@
-import { useState } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { mealCreated } from "../../redux/table/table.slice";
+import { setEdit, hideEdit } from "../../redux/edit/edit.slice";
+
 import BtnContainer from "../btn-container/btn-container.component";
 import TextArea from "../text-area/text-area.component";
 
-const EditForm = ({
-    setEditFormVisible, editForm, setEditForm, submit
-  }) => {
+const EditForm = () => {
+  const { meal, day, content } = useSelector(state => state.edit)
 
-  let { meal, day, content } = editForm
-
-  let [editState, setEditState] = useState({init: content})
+  const dispatch = useDispatch()
 
   const handleSubmit = event => {
-    event.preventDefault();
+    if (event) { event.preventDefault() }
 
-    setEditState({init:content})
-    submit(day, meal, content)
-
-    setEditForm({ meal:'', day:'', content:'' })
-    setEditFormVisible(false)
-    
+    dispatch(mealCreated({day, meal, content}))
+    dispatch(hideEdit())
   }
   
   const handleChange = event => {
     const { value } = event.target
-    setEditForm({ meal:meal, day:day, content:value })
-    setEditFormVisible(true)
+    dispatch(setEdit({ meal, day, content:value }));
+  }
+  
+  const cancel = event => {
+    if (event) { event.preventDefault() }
+    
+    dispatch(setEdit({ meal:'', day:'', content:'' }));
+    dispatch(hideEdit());
+  }
+
+  const handleKeyDown = event => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+      handleSubmit.call()
+    }
+    if (event.key === 'Escape') {
+      cancel.call()
+    }
   }
 
   return (
     <div className="form-container">
       <div className={`
         font-semibold text-sm mb-2 
-      `}>Edit {editForm.meal} for {editForm.day}</div>
-      <form onSubmit={handleSubmit}>
-        <TextArea value={editForm.content} onChange={handleChange} />
+      `}>Edit {meal} for {day}</div>
+      <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
+        <TextArea value={content} onChange={handleChange} />
 
-        <BtnContainer 
-          editState={editState} 
-          editForm={editForm} 
-          setEditFormVisible={setEditFormVisible}
-          setEditForm={setEditForm}
-        />
+        <BtnContainer cancel={cancel} />
       </form>
     </div>
   )

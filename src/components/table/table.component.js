@@ -1,13 +1,16 @@
+import { useSelector } from 'react-redux'
 import Box from '../box/box.component';
 
-const Table = ({ initTable, ...props }) => {
-  const tableBoxes = Object.entries(initTable).map(([day, meals], i) => {
-    const mealBoxes = Object.entries(meals).map(([meal], index) => (
-      <Box key={index} day={day} meal={meal} {...props} />
+const Table = () => {
+  const table = useSelector(state => state.table)
+
+  const tableBoxes = Object.entries(table).map(([day, meals], i1) => {
+    const mealBoxes = Object.entries(meals).map(([meal], i2) => (
+      <Box key={i2} day={day} meal={meal} />
     ));
 
     return (
-      <div className='grid group grid-cols-[1.5rem,150px,150px,150px]' key={i}>
+      <div className='grid group grid-cols-[1.5rem,150px,150px,150px]' key={i1}>
         <div className="-rotate-90 translate-y-9 -translate-x-9 text-center h-6 w-24 text-sm">{day}</div>
         {mealBoxes}
       </div>

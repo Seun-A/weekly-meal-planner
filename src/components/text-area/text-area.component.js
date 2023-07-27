@@ -1,7 +1,8 @@
 const TextArea = ({ ...props }) => (
   <textarea
     {...props}
-    name="boxContent"
+    name="content"
+    id='text-area'
     type = "text"
     className={`
       h-28 w-full border border-black rounded-lg resize-none text-xs py-2 px-3

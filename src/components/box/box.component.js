@@ -1,20 +1,28 @@
-import React from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { setEdit, showEdit } from '../../redux/edit/edit.slice'
 
-const Box = ({ meal, day, setEditForm, setEditFormVisible, editForm, table}) => {
+const Box = ({ meal, day}) => {
+  const Table = useSelector(state => state.table)
+  const Edit = useSelector(state => state.edit)
+  const dispatch = useDispatch()
+
   const handleClick = () => {
-    setEditForm({ meal:meal, day:day, content:table[day][meal] })
-    setEditFormVisible(true)
+    dispatch(showEdit());
+    dispatch(setEdit({meal:meal, day:day, content:Table[day][meal]}))
+
+    // Doesn't work
+    document.getElementById('text-area').focus()
   }
 
-  const contentToShow = editForm.meal === meal && editForm.day === day ? editForm.content : table[day][meal];
+  const contentToShow = Edit.meal === meal && Edit.day === day ? Edit.content 
+        : Table[day][meal];
 
-  const bg = editForm.showAlt ?
-    editForm.meal === meal && editForm.day === day ?
+  const bg = Edit.visible ?
+    Edit.meal === meal && Edit.day === day ?
       'bg-red-50' :
       'bg-white' :
     'bg-white'
 
-    
   return (
     <textarea className={`
       table-box resize-none

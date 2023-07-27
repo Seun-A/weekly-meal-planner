@@ -1,23 +1,12 @@
-import { applyMiddleware, createStore } from "redux";
 import { configureStore } from '@reduxjs/toolkit'
-import logger from "redux-logger";
-import rootReducer from "./root-reducer";
-import formCreateReducer from "./form-create/form-create.slice";
-
-const middlewares = [logger]
-
-// const store = createStore(rootReducer, applyMiddleware(...middlewares))
-// const store = configureStore({ reducer: rootReducer })
+import tableReducer from "./table/table.slice";
+import editReducer from "./edit/edit.slice";
 
 const store = configureStore({
   reducer: {
-    formCreate: formCreateReducer
+    table: tableReducer,
+    edit: editReducer
   }
 })
 
-console.log(store.getState())
 export default store
-
-
-
-
