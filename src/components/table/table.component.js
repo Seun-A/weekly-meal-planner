@@ -1,26 +1,30 @@
+import { useSelector } from 'react-redux'
 import Box from '../box/box.component';
 
-const Table = ({ table, ...props }) => {
-  const tableBoxes = Object.entries(table).map(([day, meals], i) => {
-    const mealBoxes = Object.entries(meals).map(([meal], index) => (
-      <Box key={index} index={index} table={table} meal={meal} day={day} {...props} />
+const Table = () => {
+  const table = useSelector(state => state.table)
+
+  const tableBoxes = Object.entries(table).map(([day, meals], i1) => {
+    const mealBoxes = Object.entries(meals).map(([meal], i2) => (
+      <Box key={i2} day={day} meal={meal} />
     ));
 
-    // Returns a warning, to be fixed in the future ...maybe
     return (
-      <>
-        <div key={i} className="-rotate-90 translate-y-9 -translate-x-9 text-center h-6 w-24 text-sm">{day}</div>
+      <div className='grid group grid-cols-[1.5rem,150px,150px,150px]' key={i1}>
+        <div className="-rotate-90 translate-y-9 -translate-x-9 text-center h-6 w-24 text-sm">{day}</div>
         {mealBoxes}
-      </>
+      </div>
     );
   });
 
   return (
-    <div className="meal-table grid grid-cols-[1.5rem,150px,150px,150px]">
-      <div className="h-6 w-6"></div>
-      <div className="text-sm text-center">Breakfast</div>
-      <div className="text-sm text-center">Lunch</div>
-      <div className="text-sm text-center">Dinner</div>
+    <div className="meal-table">
+      <div className="grid grid-cols-[1.5rem,150px,150px,150px]">
+        <div className="h-6 w-6"></div>
+        <div className="text-sm text-center">Breakfast</div>
+        <div className="text-sm text-center">Lunch</div>
+        <div className="text-sm text-center">Dinner</div>
+      </div>
 
       { tableBoxes }
     </div>

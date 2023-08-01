@@ -1,24 +1,33 @@
-import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from 'react-redux'
+import { mealCreated } from "../../redux/table/table.slice";
+import { setEdit, hideEdit } from "../../redux/edit/edit.slice";
+
 import BtnContainer from "../btn-container/btn-container.component";
 import TextArea from "../text-area/text-area.component";
+import { useEffect } from 'react';
 
-const EditForm = ({
-    setEditFormVisible, editForm, setEditForm, submit
-  }) => {
+const EditForm = () => {
+  const { meal, day, content } = useSelector(state => state.edit)
 
-  let { meal, day, content } = editForm
-
-  let [editState, setEditState] = useState({init: content})
+  const dispatch = useDispatch()
 
   const handleSubmit = event => {
-    if (event) { event.preventDefault(); }
+    if (event) { event.preventDefault() }
 
-    setEditState({init:content})
-    submit(day, meal, content)
+    dispatch(mealCreated({day, meal, content}))
+    dispatch(hideEdit())
+  }
 
-    setEditForm({ meal:'', day:'', content:'' })
-    setEditFormVisible(false)
+  const handleChange = event => {
+    const { value } = event.target
+    dispatch(setEdit({ meal, day, content:value }));
+  }
+  
+  const cancel = event => {
+    if (event) { event.preventDefault() }
     
+    dispatch(setEdit({ meal:'', day:'', content:'' }));
+    dispatch(hideEdit());
   }
 
   const handleKeyDown = event => {
@@ -27,36 +36,23 @@ const EditForm = ({
       handleSubmit.call()
     }
     if (event.key === 'Escape') {
-      setEditForm({ meal:meal, day:day, content:editState.init })
-      setEditFormVisible(false)
+      cancel.call()
     }
   }
 
-  const handleChange = event => {
-    const { value } = event.target
-    setEditForm({ meal:meal, day:day, content:value })
-    setEditFormVisible(true)
-  }
-
-  useEffect(()=> {
-    document.getElementById('text-area').focus()
-  })
-  
+  useEffect(() => {
+    document.getElementById('edit-text-area').focus()
+  }, [meal, day])  
 
   return (
     <div className="form-container">
       <div className={`
         font-semibold text-sm mb-2 
-      `}>Edit {editForm.meal} for {editForm.day}</div>
-      <form id='edit-form' onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
-        <TextArea value={editForm.content} onChange={handleChange} />
+      `}>Edit {meal} for {day}</div>
+      <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
+        <TextArea id='edit-text-area' autoFocus value={content} onChange={handleChange} />
 
-        <BtnContainer 
-          editState={editState} 
-          editForm={editForm} 
-          setEditFormVisible={setEditFormVisible}
-          setEditForm={setEditForm}
-        />
+        <BtnContainer cancel={cancel} />
       </form>
     </div>
   )
