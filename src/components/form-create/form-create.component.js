@@ -35,7 +35,6 @@ const CreateForm = () => {
 
   const handleChange = event => {
     const { value, name } = event.target
-    console.log(value)
     setState( prev => {return {...prev, [name]:value}} )
   }
 

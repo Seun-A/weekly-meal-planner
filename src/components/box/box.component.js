@@ -10,8 +10,10 @@ const Box = ({ meal, day}) => {
     dispatch(showEdit());
     dispatch(setEdit({meal:meal, day:day, content:Table[day][meal]}))
 
-    // Doesn't work
-    document.getElementById('text-area').focus()
+    // To be changed to async, called after dispatch
+    setTimeout(() => {
+      document.getElementById('edit-text-area').focus()
+    }, 170);
   }
 
   const contentToShow = Edit.meal === meal && Edit.day === day ? Edit.content 
