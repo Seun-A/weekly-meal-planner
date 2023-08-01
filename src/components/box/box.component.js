@@ -9,11 +9,6 @@ const Box = ({ meal, day}) => {
   const handleClick = () => {
     dispatch(showEdit());
     dispatch(setEdit({meal:meal, day:day, content:Table[day][meal]}))
-
-    // To be changed to async, called after dispatch
-    setTimeout(() => {
-      document.getElementById('edit-text-area').focus()
-    }, 170);
   }
 
   const contentToShow = Edit.meal === meal && Edit.day === day ? Edit.content 
@@ -26,7 +21,7 @@ const Box = ({ meal, day}) => {
     'bg-white'
 
   return (
-    <textarea className={`
+    <div className={`
       table-box resize-none
       py-2 px-3 text-xs ${bg} border-dotted border-gray-400
       hover:bg-red-50 cursor-pointer
@@ -43,10 +38,9 @@ const Box = ({ meal, day}) => {
       group-[&:nth-child(8)]:[&:nth-child(2)]:rounded-bl-3xl
       group-[&:nth-child(8)]:[&:nth-child(4)]:rounded-br-3xl
     `}
-    onPointerDown={handleClick}
-    value={contentToShow}
+    onClick={handleClick}
     disabled
-    />
+    >{contentToShow}</div>
   )
 }
 

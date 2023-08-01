@@ -4,6 +4,7 @@ import { setEdit, hideEdit } from "../../redux/edit/edit.slice";
 
 import BtnContainer from "../btn-container/btn-container.component";
 import TextArea from "../text-area/text-area.component";
+import { useEffect } from 'react';
 
 const EditForm = () => {
   const { meal, day, content } = useSelector(state => state.edit)
@@ -39,13 +40,18 @@ const EditForm = () => {
     }
   }
 
+  useEffect(() => {
+    document.getElementById('edit-text-area').focus()
+  }, [meal, day])
+
+
   return (
     <div className="form-container">
       <div className={`
         font-semibold text-sm mb-2 
       `}>Edit {meal} for {day}</div>
       <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
-        <TextArea value={content} onChange={handleChange} />
+        <TextArea id='edit-text-area' autoFocus value={content} onChange={handleChange} />
 
         <BtnContainer cancel={cancel} />
       </form>

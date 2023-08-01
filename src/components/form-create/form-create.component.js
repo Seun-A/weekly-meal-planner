@@ -57,7 +57,7 @@ const CreateForm = () => {
     <div className="form-container">
       <div className='font-semibold text-sm mb-2'>Add a meal</div>
       <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
-        <TextArea value={content} onChange={handleChange} />
+        <TextArea autoFocus value={content} onChange={handleChange} />
 
         <section className="mt-6 flex justify-between">
           <Select
