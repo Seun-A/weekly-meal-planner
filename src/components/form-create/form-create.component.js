@@ -54,7 +54,7 @@ const CreateForm = () => {
   }
 
   return (
-    <div className="form-container invisible">
+    <div className="form-container">
       <div className='font-semibold text-sm mb-2'>Add a meal</div>
       <form onSubmit={handleSubmit} onKeyDown={handleKeyDown}>
         <TextArea autoFocus value={content} onChange={handleChange} />

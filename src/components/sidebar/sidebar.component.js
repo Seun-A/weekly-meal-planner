@@ -19,8 +19,7 @@ const Sidebar = () => {
         top-[50%] md:top-0
         -translate-y-[50%] md:-translate-y-0
 
-        ${isEditVisible ? 'visible' : 'invisible'}
-        md:${isEditVisible ? 'visible' : 'visible'}
+        ${isEditVisible ? 'visible' : 'invisible md:visible'}
       `}
     >
       {
