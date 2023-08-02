@@ -15,7 +15,7 @@ const Sidebar = () => {
         border border-gray-300 md:border-0  
         rounded-3xl
 
-        w-60 min-h-[50%]
+        w-60 min-h-[60%]
         top-[50%] md:top-0
         -translate-y-[50%] md:-translate-y-0
 
