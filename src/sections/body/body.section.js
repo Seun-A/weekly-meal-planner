@@ -6,10 +6,12 @@ import Table from "../../components/table/table.component"
 
 const Body = () => {
   const table = useSelector(state => state.table)
+  const checklist = useSelector(state => state.checklist).arr
 
   useEffect(() => {
     localStorage.setItem('table', JSON.stringify(table));
-  }, [table]);
+    localStorage.setItem('checklist', JSON.stringify(checklist));
+  }, [table, checklist]);
   
   return (
   <div className="body-section flex justify-center mt-10">
