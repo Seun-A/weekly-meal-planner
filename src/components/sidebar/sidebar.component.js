@@ -7,10 +7,19 @@ const Sidebar = () => {
   
   return (
     <div
-      className={`sidebar
-        relative bg-white
-        mt-6 ms-3 rounded-3xl
-        py-8 px-6 w-60
+      className={`sidebar bg-white
+        mt-6 ms-3 py-8 px-6
+        
+        fixed md:relative
+
+        border border-gray-300 md:border-0  
+        rounded-3xl
+
+        w-60 min-h-[60%]
+        top-[50%] md:top-0
+        -translate-y-[50%] md:-translate-y-0
+
+        ${isEditVisible ? 'visible' : 'invisible md:visible'}
       `}
     >
       {

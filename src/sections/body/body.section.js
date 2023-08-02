@@ -12,7 +12,11 @@ const Body = () => {
   }, [table]);
   
   return (
-  <div className="body-section flex justify-center mt-10">
+  <div className={`body-section mt-10
+    flex justify-center
+    flex-col md:flex-row
+    items-center md:items-stretch
+  `}>
     <Table />
     <Sidebar />
   </div>
