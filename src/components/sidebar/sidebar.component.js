@@ -1,6 +1,8 @@
 import { useSelector } from 'react-redux'
+
 import EditForm from "../form-edit/form-edit.component";
 import CreateForm from "../form-create/form-create.component";
+import GroceryList from '../grocery-list/grocery-list.component';
 
 const Sidebar = () => {
   const isEditVisible = useSelector(state => state.edit).visible
@@ -19,6 +21,7 @@ const Sidebar = () => {
         :
           <CreateForm />
       }
+      <GroceryList />
     </div>
   )
 }

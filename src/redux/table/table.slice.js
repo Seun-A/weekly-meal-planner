@@ -30,6 +30,7 @@ const tableSlice = createSlice({
   }
 })
 
+
 export const { mealCreated } = tableSlice.actions
 
 export default tableSlice.reducer

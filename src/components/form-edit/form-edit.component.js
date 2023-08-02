@@ -5,6 +5,7 @@ import { setEdit, hideEdit } from "../../redux/edit/edit.slice";
 import BtnContainer from "../btn-container/btn-container.component";
 import TextArea from "../text-area/text-area.component";
 import { useEffect } from 'react';
+import { checklistItemAdd } from '../../redux/checklist/checklist.slice';
 
 const EditForm = () => {
   const { meal, day, content } = useSelector(state => state.edit)
@@ -15,6 +16,7 @@ const EditForm = () => {
     if (event) { event.preventDefault() }
 
     dispatch(mealCreated({day, meal, content}))
+    dispatch(checklistItemAdd({content}))
     dispatch(hideEdit())
   }
 

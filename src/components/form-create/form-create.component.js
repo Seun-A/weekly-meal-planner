@@ -5,6 +5,7 @@ import TextArea from "../text-area/text-area.component";
 import Select from "../select/select.component";
 import BtnContainer from "../btn-container/btn-container.component";
 import { mealCreated } from "../../redux/table/table.slice";
+import { checklistItemAdd } from "../../redux/checklist/checklist.slice";
 
 const CreateForm = () => {
   const [state, setState] = useState({ day:'', meal:'', content:'' })
@@ -26,6 +27,8 @@ const CreateForm = () => {
 
     if ((day) && (meal) && (content)) {
       dispatch(mealCreated({ day, meal, content }));
+      dispatch(checklistItemAdd({content}))
+
       
       resetCreateForm()
     } else {
