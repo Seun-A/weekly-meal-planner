@@ -2,7 +2,6 @@ const TextArea = ({...props }) => (
   <textarea
     {...props}
     name="content"
-    selectionEnd={1000} // It only works on second click
     className={`
       h-28 w-full border border-black rounded-lg resize-none text-xs py-2 px-3
       focus:outline-none
